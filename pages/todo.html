@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To-Do List with Prioritization</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    nav {
+      background-color: #3f51b5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .board {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .column {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      width: 30%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .column h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      min-height: 200px;
+    }
+
+    li {
+      background: #e8eaf6;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: move;
+    }
+
+    .task-form {
+      display: flex;
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .task-form input, .task-form select, .task-form button {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .task-form button {
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+  </style>
+      <link rel="stylesheet" href="../css/style.css"/>
+
+</head>
+<body>
+  <nav>
+     <a href="planner.html">Planner</a>
+    <a href="todo.html">To-Do</a>
+    <a href="journal.html">Journal</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="reminders.html">Reminders</a>
+        <a href="goals.html">Goals</a>
+            <a href="habits.html">Habits</a>
+
+
+  </nav>
+
+
+  <div class="task-form">
+    <input type="text" id="task-text" placeholder="Enter task..." />
+    <select id="task-category">
+      <option value="work">Work</option>
+      <option value="personal">Personal</option>
+      <option value="hobbies">Hobbies</option>
+    </select>
+    <button id="add-task-btn">Add Task</button>
+  </div>
+
+  <div class="board">
+    <div class="column">
+      <h3>Work</h3>
+      <ul id="work-list"></ul>
+    </div>
+    <div class="column">
+      <h3>Personal</h3>
+      <ul id="personal-list"></ul>
+    </div>
+    <div class="column">
+      <h3>Hobbies</h3>
+      <ul id="hobbies-list"></ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/todo.js"></script>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Habit Tracker</title>
+      <!-- <link rel="stylesheet" href="../css/style.css"/> -->
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+    }
+
+    nav {
+      background-color: #4A90E2;
+      padding: 14px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3a7fd1;
+    }
+
+    .habit {
+      margin-bottom: 20px;
+    }
+
+    .habit-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .week {
+      display: flex;
+      gap: 5px;
+    }
+
+    .day {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: #eee;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .day.completed {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no-habits {
+      text-align: center;
+      color: #888;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="planner.html">Planner</a>
+    <a href="todo.html">To-Do</a>
+    <a href="journal.html">Journal</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="reminders.html">Reminders</a>
+        <a href="goals.html">Goals</a>
+            <a href="habits.html">Habits</a>
+  </nav>
+
+
+  <h1>Habit Tracker</h1>
+
+  <div class="container">
+    <form id="habit-form">
+      <input type="text" id="habit-input" placeholder="Enter new habit..." required>
+      <button type="submit">Add Habit</button>
+    </form>
+
+    <div id="habits-list">
+      <p class="no-habits">No habits added yet.</p>
+    </div>
+  </div>
+
+  <script>
+    const habitForm = document.getElementById('habit-form');
+    const habitInput = document.getElementById('habit-input');
+    const habitsList = document.getElementById('habits-list');
+
+    const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    habitForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const habitName = habitInput.value.trim();
+      if (!habitName) return;
+
+      addHabit(habitName);
+      habitInput.value = "";
+    });
+
+
+    
+    function addHabit(name) {
+      const habitDiv = document.createElement('div');
+      habitDiv.className = 'habit';
+
+      const title = document.createElement('div');
+      title.className = 'habit-title';
+      title.textContent = name;
+
+      const week = document.createElement('div');
+      week.className = 'week';
+
+      daysOfWeek.forEach(day => {
+        const dayBox = document.createElement('div');
+        dayBox.className = 'day';
+        dayBox.textContent = day;
+
+        dayBox.addEventListener('click', () => {
+          dayBox.classList.toggle('completed');
+        });
+
+        week.appendChild(dayBox);
+      });
+
+      habitDiv.appendChild(title);
+      habitDiv.appendChild(week);
+      habitsList.appendChild(habitDiv);
+
+      // Remove "no habits" message
+      const noHabits = document.querySelector('.no-habits');
+      if (noHabits) noHabits.remove();
+    }
+  </script>
+   <script src="../js/theme.js"></script>
+
+</body>
+</html>

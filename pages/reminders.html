@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reminders</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #3f51b5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .reminder-list {
+      margin-top: 20px;
+    }
+
+    .reminder-item {
+      padding: 10px;
+      background: #e8eaf6;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .reminder-time {
+      font-weight: bold;
+    }
+  </style>
+      <!-- <link rel="stylesheet" href="../css/style.css"/> -->
+
+</head>
+<body>
+  <nav>
+     <a href="planner.html">Planner</a>
+    <a href="todo.html">To-Do</a>
+    <a href="journal.html">Journal</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="reminders.html">Reminders</a>
+        <a href="goals.html">Goals</a>
+            <a href="habits.html">Habits</a>
+
+
+  </nav>
+
+  <div class="container">
+    <h2>Set a Reminder</h2>
+    <input type="text" id="title" placeholder="Reminder title" />
+    <textarea id="description" placeholder="Reminder description"></textarea>
+    <input type="datetime-local" id="datetime" />
+    <button id="set-reminder">Set Reminder</button>
+
+    <div class="reminder-list" id="reminder-list"></div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/reminders.js"></script>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
+
+

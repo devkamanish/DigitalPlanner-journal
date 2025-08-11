@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Calendar</title>
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
-  <link rel="stylesheet" href="../css/calendar.css">
-    <!-- <link rel="stylesheet" href="../css/style.css"/> -->
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Calendar with Time</title>
+<style>
+   
+    h1 {
+        margin: 20px 0;
+    }
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        max-width: 900px;
+        margin: auto;
+    }
+    .day-header, .day {
+        padding: 10px;
+        background: white;
+        border-radius: 5px;
+    }
+    .day-header {
+        background: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+    .day {
+        height: 70px;
+        overflow-y: auto;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .day:hover {
+        background: #f0f0f0;
+    }
+    .task {
+        background: #4CAF50;
+        color: white;
+        padding: 2px 5px;
+        margin-top: 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+    }
+    .delete-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 0 5px;
+        font-size: 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
       body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -29,15 +83,13 @@
       font-weight: bold;
     }
 
-    
     nav a:hover {
       text-decoration: underline;
     }
-
-  </style>
+</style>
 </head>
 <body>
-  <nav>
+<nav>
     <a href="planner.html">Planner</a>
     <a href="todo.html">To-Do</a>
     <a href="journal.html">Journal</a>
@@ -45,24 +97,102 @@
     <a href="reminders.html">Reminders</a>
         <a href="goals.html">Goals</a>
             <a href="habits.html">Habits</a>
-
   </nav>
-<a href="../index.html" class="home-button" title="Go to Home">
+  <a href="../index.html" class="home-button" title="Go to Home">
     <img src="../assests/homeIcon.png" alt="Home" class="home-icon" style="height: 40px; width: 40px;">
 </a>
 
+<h1 style="margin-left: 34%;">Monthly Task Calendar</h1>
+<div id="calendar" class="calendar"></div>
 
+<script>
+    const calendarElement = document.getElementById("calendar");
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  <div id='calendar'></div>
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
 
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
-  <script src="../js/config.js"></script>
-  <script src="../js/calendar.js"></script>
+    // Load tasks from localStorage
+    let tasks = JSON.parse(localStorage.getItem("calendarTasks")) || {};
+
+    function renderCalendar(month, year) {
+        calendarElement.innerHTML = "";
+
+        // Add day headers
+        dayNames.forEach(day => {
+            const dayHeader = document.createElement("div");
+            dayHeader.classList.add("day-header");
+            dayHeader.textContent = day;
+            calendarElement.appendChild(dayHeader);
+        });
+
+        const firstDay = new Date(year, month).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Empty cells before first day
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement("div");
+            calendarElement.appendChild(emptyCell);
+        }
+
+        // Days of month
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement("div");
+            dayCell.classList.add("day");
+            dayCell.innerHTML = `<strong>${day}</strong>`;
+
+            const dateKey = `${year}-${month + 1}-${day}`;
+            if (tasks[dateKey]) {
+                tasks[dateKey].forEach((task, index) => {
+                    const taskDiv = document.createElement("div");
+                    taskDiv.classList.add("task");
+                    taskDiv.innerHTML = `${task.time} - ${task.text}`;
+
+                    // Delete button
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.classList.add("delete-btn");
+                    deleteBtn.textContent = "❌";
+                    deleteBtn.addEventListener("click", (e) => {
+                        e.stopPropagation(); // prevent triggering addTask
+                        deleteTask(dateKey, index);
+                    });
+
+                    taskDiv.appendChild(deleteBtn);
+                    dayCell.appendChild(taskDiv);
+                });
+            }
+
+            dayCell.addEventListener("click", () => addTask(dateKey));
+            calendarElement.appendChild(dayCell);
+        }
+    }
+
+    function addTask(dateKey) {
+        const time = prompt("Enter time (e.g., 14:00):");
+        if (!time) return;
+        const text = prompt("Enter task:");
+        if (text) {
+            if (!tasks[dateKey]) {
+                tasks[dateKey] = [];
+            }
+            tasks[dateKey].push({ time, text });
+            localStorage.setItem("calendarTasks", JSON.stringify(tasks));
+            renderCalendar(month, year);
+        }
+    }
+
+    function deleteTask(dateKey, index) {
+        tasks[dateKey].splice(index, 1);
+        if (tasks[dateKey].length === 0) {
+            delete tasks[dateKey];
+        }
+        localStorage.setItem("calendarTasks", JSON.stringify(tasks));
+        renderCalendar(month, year);
+    }
+
+    renderCalendar(month, year);
+</script>
+
 </body>
 </html>
-
-
-
- 
-
-

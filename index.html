@@ -1,48 +1,179 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Planner</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <script>
-    // Check user auth status from localStorage
-    // const user = localStorage.getItem('currentUser');
-    // if (!user) {
-    //   // If no user, redirect to login
-    //   window.location.href = 'login.html';
-    // }
-  </script>
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Website</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: "Poppins", sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #222;
+      color: white;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff9800;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 60vh;
+      background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/900') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
+    /* Quotes Section */
+    .quotes {
+      padding: 60px 20px;
+      background: #f4f4f4;
+      text-align: center;
+    }
+
+    .quotes h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .quote-box {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Message Section */
+    .message {
+      padding: 60px 20px;
+      text-align: center;
+      background: white;
+    }
+
+    .message h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .message p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+      color: #666;
+    }
+    
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: #3f51b5;
+    color: white;
+}
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
 <body>
-  <nav class="navbar">
+
+  <!-- Navbar -->
+<nav>
     <a href="./pages/planner.html">Planner</a>
     <a href="./pages/todo.html">To-Do</a>
     <a href="./pages/journal.html">Journal</a>
     <a href="./pages/calendar.html">Calendar</a>
     <a href="./pages/reminders.html">Reminders</a>
-    <a href="./pages/goals.html">Goals</a>
-    <a href="./pages/habits.html">Habits</a>
-    
+        <a href="./pages/goals.html">Goals</a>
+            <a href="./pages/habits.html">Habits</a>
   </nav>
 
-  <main>
-    <h1>Welcome to  Digital Planner & Journal</h1>
-    <p>Select a section from the navbar to get started.</p>
-  </main>
-  
-      <script src="./js/config.js"></script>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1>Welcome to Inspiration Hub</h1>
+    <p>Your daily source of motivation and positivity.</p>
+  </section>
+   <!-- Quick Access Cards -->
+    <section class="cards-container">
+        <div class="card" onclick="location.href='pages/planner.html'">📒 Planner</div>
+        <div class="card" onclick="location.href='pages/todo.html'">✅ To-Do</div>
+        <div class="card" onclick="location.href='pages/journal.html'">✍ Journal</div>
+        <div class="card" onclick="location.href='pages/calendar.html'">📅 Calendar</div>
+        <div class="card" onclick="location.href='pages/reminders.html'">⏰ Reminders</div>
+        <div class="card" onclick="location.href='pages/goals.html'">🎯 Goals</div>
+        <div class="card" onclick="location.href='pages/habits.html'">💪 Habits</div>
+    </section>
+  <!-- Quotes Section -->
+  <section class="quotes" id="quotes">
+    <h2>Inspirational Quote</h2>
+    <div class="quote-box">
+      "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful."
+    </div>
+  </section>
 
-
-<script src="js/theme.js"></script>
-
+  <!-- Message Section -->
+ 
 </body>
 </html>
-
-
-
-
-
-

@@ -7,7 +7,34 @@
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
   <link rel="stylesheet" href="../css/calendar.css">
     <!-- <link rel="stylesheet" href="../css/style.css"/> -->
+  <style>
+      body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+    }
 
+    nav {
+      background-color: #3f51b5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
 </head>
 <body>
   <nav>
@@ -19,9 +46,11 @@
         <a href="goals.html">Goals</a>
             <a href="habits.html">Habits</a>
 
-
-
   </nav>
+<a href="../index.html" class="home-button" title="Go to Home">
+    <img src="../assests/homeIcon.png" alt="Home" class="home-icon" style="height: 40px; width: 40px;">
+</a>
+
 
 
   <div id='calendar'></div>

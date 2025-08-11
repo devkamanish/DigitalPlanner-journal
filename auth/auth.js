@@ -33,13 +33,13 @@ function signup() {
         })
         .then(() => {
           alert("Signup successful!");
-          window.location.href = "login.html";
+          window.location.replace("login.html");
         });
       }
     });
 }
 
-// Login// Login
+// Login
 function login() {
   const email = document.getElementById("login-email").value.trim();
   const password = document.getElementById("login-password").value;
@@ -64,10 +64,10 @@ function login() {
         localStorage.setItem("userEmail", userData.email);
 
         alert("Login successful!");
-        // 🔄 Redirect to your main page
-        console.log("not wokig")
-        window.location.href = "index.html";
-        console.log("hhhheheh")
+        // Redirect to app home, accounting for relative paths
+        const path = window.location.pathname.replace(/\\/g, '/');
+        const destination = path.includes('/auth/') ? "../index.html" : "index.html";
+        window.location.replace(destination);
       } else {
         alert("Invalid credentials!");
       }
